@@ -1,11 +1,10 @@
 package one.digitalinnovation.personapi.controller;
 
 import lombok.AllArgsConstructor;
-import one.digitalinnovation.personapi.dto.request.PersonDTO;
+import one.digitalinnovation.personapi.dto.request.PetDTO;
 import one.digitalinnovation.personapi.dto.response.MessageResponseDTO;
-import one.digitalinnovation.personapi.entity.Person;
-import one.digitalinnovation.personapi.exception.PersonNotFoundException;
-import one.digitalinnovation.personapi.service.PersonService;
+import one.digitalinnovation.personapi.exception.PetNotFoundException;
+import one.digitalinnovation.personapi.service.PetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -22,36 +21,36 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/people")
+@RequestMapping("/api/v1/pet")
 @AllArgsConstructor(onConstructor = @__(@Autowired))
-public class PersonController {
+public class PetController {
 
-    private PersonService personService;
+    private PetService petService;
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public MessageResponseDTO createPerson(@RequestBody @Valid PersonDTO personDTO) {
-        return personService.createPerson(personDTO);
+    public MessageResponseDTO createPerson(@RequestBody @Valid PetDTO personDTO) {
+        return petService.createPerson(personDTO);
     }
 
     @GetMapping
-    public List<PersonDTO> listAll() {
-        return personService.listAll();
+    public List<PetDTO> listAll() {
+        return petService.listAll();
     }
 
     @GetMapping("/{id}")
-    public PersonDTO findById(@PathVariable Long id) throws PersonNotFoundException {
-        return personService.findById(id);
+    public PetDTO findById(@PathVariable Long id) throws PetNotFoundException {
+        return petService.findById(id);
     }
 
     @PutMapping("/{id}")
-    public MessageResponseDTO updateById(@PathVariable Long id, @RequestBody @Valid PersonDTO personDTO) throws PersonNotFoundException {
-        return personService.updateById(id, personDTO);
+    public MessageResponseDTO updateById(@PathVariable Long id, @RequestBody @Valid PetDTO personDTO) throws PetNotFoundException {
+        return petService.updateById(id, personDTO);
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteById(@PathVariable Long id) throws PersonNotFoundException {
-        personService.delete(id);
+    public void deleteById(@PathVariable Long id) throws PetNotFoundException {
+    	petService.delete(id);
     }
 }

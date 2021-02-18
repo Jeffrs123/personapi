@@ -1,9 +1,9 @@
 package one.digitalinnovation.personapi.service;
 
-import one.digitalinnovation.personapi.dto.request.PersonDTO;
+import one.digitalinnovation.personapi.dto.request.PetDTO;
 import one.digitalinnovation.personapi.dto.response.MessageResponseDTO;
-import one.digitalinnovation.personapi.entity.Person;
-import one.digitalinnovation.personapi.repository.PersonRepository;
+import one.digitalinnovation.personapi.entity.Pet;
+import one.digitalinnovation.personapi.repository.PetRepository;
 import one.digitalinnovation.personapi.utils.PersonUtils;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -21,17 +21,17 @@ import static org.mockito.Mockito.*;
 public class PersonServiceTest {
 
     @Mock
-    private PersonRepository personRepository;
+    private PetRepository personRepository;
 
     @InjectMocks
-    private PersonService personService;
+    private PetService personService;
 
     @Test
     void testGivenPersonDTOThenReturnSavedMessage() {
-        PersonDTO personDTO = createFakeDTO();
-        Person expectedSavedPerson = createFakeEntity();
+        PetDTO personDTO = createFakeDTO();
+        Pet expectedSavedPerson = createFakeEntity();
 
-        when(personRepository.save(any(Person.class))).thenReturn(expectedSavedPerson);
+        when(personRepository.save(any(Pet.class))).thenReturn(expectedSavedPerson);
 
         MessageResponseDTO expectedSuccessMessage = createExpectedMessageResponse(expectedSavedPerson.getId());
         MessageResponseDTO succesMessage = personService.createPerson(personDTO);
