@@ -29,8 +29,8 @@ public class PetController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public MessageResponseDTO createPerson(@RequestBody @Valid PetDTO personDTO) {
-        return petService.createPerson(personDTO);
+    public MessageResponseDTO createPerson(@RequestBody @Valid PetDTO petDTO) {
+        return petService.createPerson(petDTO);
     }
 
     @GetMapping
